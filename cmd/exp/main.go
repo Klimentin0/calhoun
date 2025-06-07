@@ -7,12 +7,8 @@ import (
 
 type User struct {
 	Name string
-	Age  int8
-	Meta UserMeta
-}
-
-type UserMeta struct {
-	Visits int
+	Bio  string
+	Age  int
 }
 
 func main() {
@@ -23,10 +19,8 @@ func main() {
 
 	user := User{
 		Name: "hardcoded name from struct",
-		Age:  20,
-		Meta: UserMeta{
-			Visits: 4,
-		},
+		Bio:  `<script>alert("test alert for XSS");</script>`,
+		Age:  123,
 	}
 
 	err = t.Execute(os.Stdout, user)

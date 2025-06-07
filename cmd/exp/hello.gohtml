@@ -1,3 +1,11 @@
 <h1>Test template with name: {{.Name}}</h1>
-<h1>Test template with age: {{.Age}}</h1>
-<h1>Test template with visits: {{.Meta.Visits}}</h1>
+<p>Bio: {{ .Bio}}</p>
+
+<script>
+const user = {
+    "name": {{.Name}},
+    "bio": {{.Bio}},
+    "age": {{.Age}}
+  };
+  console.log(user);
+</script>

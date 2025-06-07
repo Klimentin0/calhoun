@@ -1,26 +1,45 @@
 package main
 
 import (
+	"calhoun/views"
 	"fmt"
+	"log"
 	"net/http"
+	"path/filepath"
 
 	"github.com/go-chi/chi/v5"
 )
 
+func executeTemplate(w http.ResponseWriter, filepath string) {
+	t, err := views.Parse(filepath)
+	if err != nil {
+		log.Printf("parsing template: %v", err)
+		http.Error(w, "error parsing template", http.StatusInternalServerError)
+		return
+	}
+	t.Execute(w, nil)
+}
+
 func homeHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	fmt.Fprint(w, "<h1>Test new handler</h1>")
+	tplPath := filepath.Join("templates", "home.gohtml")
+	executeTemplate(w, tplPath)
 }
 
 func contactHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	fmt.Fprint(w, "<h1>Contact Page</h1><p>to get in touch</p><h3><a href=\"mailto:test@mail.ru\">test@mail.ru</a></h3>")
+	tplPath := filepath.Join("templates", "contact.gohtml")
+	executeTemplate(w, tplPath)
+}
+
+func docsHandler(w http.ResponseWriter, r *http.Request) {
+	tplPath := filepath.Join("templates", "docs.gohtml")
+	executeTemplate(w, tplPath)
 }
 
 func main() {
 	r := chi.NewRouter()
 	r.Get("/", homeHandler)
 	r.Get("/contact", contactHandler)
+	r.Get("/docs", docsHandler)
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Page not found", http.StatusNotFound)
 	})
