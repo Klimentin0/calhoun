@@ -1,6 +1,7 @@
 package main
 
 import (
+	"calhoun/controllers"
 	"calhoun/views"
 	"fmt"
 	"log"
@@ -20,26 +21,27 @@ func executeTemplate(w http.ResponseWriter, filepath string) {
 	t.Execute(w, nil)
 }
 
-func homeHandler(w http.ResponseWriter, r *http.Request) {
-	tplPath := filepath.Join("templates", "home.gohtml")
-	executeTemplate(w, tplPath)
-}
-
-func contactHandler(w http.ResponseWriter, r *http.Request) {
-	tplPath := filepath.Join("templates", "contact.gohtml")
-	executeTemplate(w, tplPath)
-}
-
-func docsHandler(w http.ResponseWriter, r *http.Request) {
-	tplPath := filepath.Join("templates", "docs.gohtml")
-	executeTemplate(w, tplPath)
-}
-
 func main() {
 	r := chi.NewRouter()
-	r.Get("/", homeHandler)
-	r.Get("/contact", contactHandler)
-	r.Get("/docs", docsHandler)
+
+	tpl, err := views.Parse(filepath.Join("templates", "home.gohtml"))
+	if err != nil {
+		panic(err)
+	}
+	r.Get("/", controllers.StaticHandler(tpl))
+
+	tpl, err = views.Parse(filepath.Join("templates", "contact.gohtml"))
+	if err != nil {
+		panic(err)
+	}
+	r.Get("/contact", controllers.StaticHandler(tpl))
+
+	tpl, err = views.Parse(filepath.Join("templates", "docs.gohtml"))
+	if err != nil {
+		panic(err)
+	}
+	r.Get("/docs", controllers.StaticHandler(tpl))
+
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Page not found", http.StatusNotFound)
 	})
