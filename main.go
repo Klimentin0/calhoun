@@ -2,11 +2,11 @@ package main
 
 import (
 	"calhoun/controllers"
+	"calhoun/templates"
 	"calhoun/views"
 	"fmt"
 	"log"
 	"net/http"
-	"path/filepath"
 
 	"github.com/go-chi/chi/v5"
 )
@@ -24,22 +24,13 @@ func executeTemplate(w http.ResponseWriter, filepath string) {
 func main() {
 	r := chi.NewRouter()
 
-	tpl, err := views.Parse(filepath.Join("templates", "home.gohtml"))
-	if err != nil {
-		panic(err)
-	}
+	tpl := views.Must(views.ParseFS(templates.FS, "home.gohtml"))
 	r.Get("/", controllers.StaticHandler(tpl))
 
-	tpl, err = views.Parse(filepath.Join("templates", "contact.gohtml"))
-	if err != nil {
-		panic(err)
-	}
+	tpl = views.Must(views.ParseFS(templates.FS, "contact.gohtml"))
 	r.Get("/contact", controllers.StaticHandler(tpl))
 
-	tpl, err = views.Parse(filepath.Join("templates", "docs.gohtml"))
-	if err != nil {
-		panic(err)
-	}
+	tpl = views.Must(views.ParseFS(templates.FS, "docs.gohtml"))
 	r.Get("/docs", controllers.StaticHandler(tpl))
 
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
