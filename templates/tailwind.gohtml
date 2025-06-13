@@ -6,22 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./static/style/css/output.css" rel="stylesheet">
 </head>
-<body>
+<body class="min-h-screen bg-gray-100">
   <header class="sticky top-0 z-50 bg-white shadow">
-    <nav class="flex flew-row py-1 lg:px-8 items-center justify-between sticky top-0 z-50 shadow border-b-3 border-main-blue">
-      <div class="">
+    <nav class="relative flex flex-row py-1 px-12 items-center justify-between sticky top-0 z-50 shadow border-b-3 border-main-blue overflow-hidden">
+      <div class="rainbow z-1"></div>
+      <div class="rainbow z-1"></div>
+      <div class="rainbow z-1"></div>
+      <div class="relative z-10">
         <a href="/">
           <span class="sr-only"></span>
           <img class="h-20 w-auto object-cover" src="./static/img/logo/l-full.png" alt="">
         </a>
       </div>
-      <div>
-        <a href="/docs" class="h-20 px-1 inline-flex items-center border-3 border-main-blue font-bold text-main-blue">Инструкция</a>
-        <a href="/contact" class="h-20 px-1 inline-flex items-center border-3 border-main-blue font-bold text-main-blue">Контакт</a>
-        <a href="/" class="h-20 px-1 inline-flex items-center border-3 border-main-blue font-bold text-main-blue">Файлы</a>
+      <div class="relative z-10 inline-block">
+          <svg class="align-middle inline-flex" width="64px" height="64px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" stroke="#0699dc" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.336"/>
+          <g id="SVGRepo_iconCarrier"> <path d="M5.0333 14.8284L6.44751 16.2426L10.6902 12L6.44751 7.75733L5.0333 9.17155L7.86172 12L5.0333 14.8284Z" fill="#0699dc"/> <path d="M15 14H11V16H15V14Z" fill="#0699dc"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 2C0.895431 2 0 2.89543 0 4V20C0 21.1046 0.89543 22 2 22H22C23.1046 22 24 21.1046 24 20V4C24 2.89543 23.1046 2 22 2H2ZM22 4H2L2 20H22V4Z" fill="#0699dc"/> </g>
+        </svg>
+        <a href="/docs" class="align-middle h-9 px-1 inline-flex items-center border-3 border-main-blue font-bold text-main-blue bg-white hover:bg-main-blue hover:text-white">Инструкция</a>
+        <div class="inline-flex align-middle text-main-blue text-2xl">/</div>
+        <a href="/contact" class="h-9 px-1 inline-flex items-center border-3 border-main-blue font-bold text-main-blue bg-white hover:bg-main-blue hover:text-white">Контакт</a>
+        <div class="inline-flex align-middle text-main-blue text-2xl">/</div>
+        <a href="/" class="h-9 px-1 inline-flex items-center border-3 border-main-blue font-bold text-main-blue bg-white hover:bg-main-blue hover:text-white">Файлы</a>
       </div>
-      <div>
-        <a href="/" class="h-20 px-1 inline-flex items-center border-3 border-main-blue font-bold text-main-blue">Войти в систему</a>
+      <div class="flex flex-col space-y-1 relative z-10">
+        <a href="/signup" class="h-9 px-1 inline-flex items-center border-3 border-main-blue font-bold text-main-blue bg-white hover:bg-main-blue hover:text-white">Войти в систему</a>
+        <a href="/signup" class="h-9 px-1 inline-flex items-center border-3 border-main-blue font-bold text-main-blue bg-white hover:bg-main-blue hover:text-white">Регистрация</a>
       </div>
     </nav>
   </header>
