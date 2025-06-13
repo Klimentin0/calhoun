@@ -1,10 +1,24 @@
-<h1>ИНСТРУКЦИЯ</h1>
-<h2>Восстановление</h2>
-<h3>
-  <a href="mailto:test@mail.ru">
-    test@mail.ru
-  </a>
-</h3>
-<a href='/'>
+{{template "header"}}
+<div class="px-6">
+  <h1 class="py-4 text-4xl semibold tracking-tight">ИНСТРУКЦИЯ</h1>
+  <ul class="grid grid-cols-2 gap-16">
+    {{range .}}
+      {{template "docs" .}}
+    {{end}}
+  </ul>
+<a href='/' class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
   <button>Главная страница</button>
 </a>
+</div>
+
+{{define "docs"}}
+<li class="border-t border-indigo-400 py-1 px-2">
+  <div class="block text-2xl text-bold">
+    {{.Topic}}
+  </div>
+  <div class="block text-grey">
+    {{.Instructions}}
+  </div>
+</li>
+{{end}}
+{{template "footer"}}

@@ -24,14 +24,17 @@ func executeTemplate(w http.ResponseWriter, filepath string) {
 func main() {
 	r := chi.NewRouter()
 
-	tpl := views.Must(views.ParseFS(templates.FS, "home.gohtml"))
+	fileServer := http.FileServer(http.Dir("./assets/public/"))
+	r.Handle("/static/*", http.StripPrefix("/static/", fileServer))
+
+	tpl := views.Must(views.ParseFS(templates.FS, "home.gohtml", "tailwind.gohtml"))
 	r.Get("/", controllers.StaticHandler(tpl))
 
-	tpl = views.Must(views.ParseFS(templates.FS, "contact.gohtml"))
+	tpl = views.Must(views.ParseFS(templates.FS, "contact.gohtml", "tailwind.gohtml"))
 	r.Get("/contact", controllers.StaticHandler(tpl))
 
-	tpl = views.Must(views.ParseFS(templates.FS, "docs.gohtml"))
-	r.Get("/docs", controllers.StaticHandler(tpl))
+	tpl = views.Must(views.ParseFS(templates.FS, "docs.gohtml", "tailwind.gohtml"))
+	r.Get("/docs", controllers.Docs(tpl))
 
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Page not found", http.StatusNotFound)
