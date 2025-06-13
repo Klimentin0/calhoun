@@ -7,7 +7,27 @@
   <link href="./static/style/css/output.css" rel="stylesheet">
 </head>
 <body>
+  <header class="sticky top-0 z-50 bg-white shadow">
+    <nav class="flex flew-row py-1 lg:px-8 items-center justify-between sticky top-0 z-50 shadow border-b-3 border-main-blue">
+      <div class="">
+        <a href="/">
+          <span class="sr-only"></span>
+          <img class="h-20 w-auto object-cover" src="./static/img/logo/l-full.png" alt="">
+        </a>
+      </div>
+      <div>
+        <a href="/docs" class="h-20 px-1 inline-flex items-center border-3 border-main-blue font-bold text-main-blue">Инструкция</a>
+        <a href="/contact" class="h-20 px-1 inline-flex items-center border-3 border-main-blue font-bold text-main-blue">Контакт</a>
+        <a href="/" class="h-20 px-1 inline-flex items-center border-3 border-main-blue font-bold text-main-blue">Файлы</a>
+      </div>
+      <div>
+        <a href="/" class="h-20 px-1 inline-flex items-center border-3 border-main-blue font-bold text-main-blue">Войти в систему</a>
+      </div>
+    </nav>
+  </header>
 {{end}}
+
+
 
 {{define "footer"}}
 </body>
