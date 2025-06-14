@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"calhoun/views"
 	"html/template"
+	"laboratoria/views"
 	"net/http"
 )
 

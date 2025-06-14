@@ -1,10 +1,10 @@
 package main
 
 import (
-	"calhoun/controllers"
-	"calhoun/templates"
-	"calhoun/views"
 	"fmt"
+	"laboratoria/controllers"
+	"laboratoria/templates"
+	"laboratoria/views"
 	"log"
 	"net/http"
 
@@ -43,9 +43,6 @@ func main() {
 	))
 	r.Get("/signup", usersC.New)
 	r.Post("/users", usersC.Create)
-
-	tpl = views.Must(views.ParseFS(templates.FS, "signup.gohtml", "tailwind.gohtml"))
-	r.Get("/signup", controllers.Docs(tpl))
 
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Page not found", http.StatusNotFound)
